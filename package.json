@@ -1,0 +1,16 @@
+{
+  "name": "jstutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "lite-server": "^2.4.0"
+  },
+  "scripts": {
+    "start": "lite-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

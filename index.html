@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div id="container">
+    <label for="username">Username:</label><input type="text" id="username" name="username">
+    <label for="password">Password:</label><input type="password" id="password" name="password">
+    <label for="checkbox">Remember</label><input type="checkbox" id="checkbox">
+    <button id="login">Login</button>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+
+    document.addEventListener("readystatechange", event => {
+        console.log(document.getElementById("checkbox").checked)
+        if (event.target.readyState === "complete") {
+            if(localStorage.getItem("user_id")){
+                window.location.replace("http://localhost:3001/home.html");
+            }
+        }
+    });
+
+    function login() {
+        const url = "http://localhost:3000/users";
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        get(url.concat("?username=", username))
+            .then(result => {
+                var x = result[0] && result[0].password === password
+                if (x) {
+                    if (document.getElementById("checkbox").checked) {
+                        localStorage.setItem("user_id", result[0].id);
+                        localStorage.setItem("checked", true);
+                    }
+                    window.location.replace("http://localhost:3001/home.html");
+                }
+                else if (x === undefined) {
+                    post(url, {
+                        "username": username,
+                        "password": password
+                    })
+                        .then(result => {
+                            window.location.replace("http://localhost:3001/home.html");
+                        })
+                }
+                else alert("Password is not correct!")
+            })
+            .catch(error => console.log(error));
+    }
+
+    function get(url) {
+        return fetch(url)
+            .then(response => response.json())
+    }
+
+    function post(url, data) {
+        return fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+    }
+
+    const login_button = document.getElementById("login");
+    login_button.addEventListener("click", login);
+
+</script>

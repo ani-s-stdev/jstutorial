@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+Home, sweet home ^o^
+</body>
+</html>
+
+<script type="text/javascript">
+
+    document.addEventListener("readystatechange", event => {
+        if (event.target.readyState === "complete") {
+            if (localStorage.getItem("checked") && !localStorage.getItem("user_id")) {
+                window.location.replace("http://localhost:3001/");
+            }
+        }
+    });
+
+</script>

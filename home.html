@@ -13,7 +13,7 @@ Home, sweet home ^o^
 
     document.addEventListener("readystatechange", event => {
         if (event.target.readyState === "complete") {
-            if (localStorage.getItem("checked") && !localStorage.getItem("user_id")) {
+            if (localStorage.getItem("checked")===true && !localStorage.getItem("user_id")) {
                 window.location.replace("http://localhost:3001/");
             }
         }

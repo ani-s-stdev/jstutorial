@@ -30,14 +30,15 @@
         const url = "http://localhost:3000/users";
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
+        var remember = document.getElementById("checkbox").checked;
+        localStorage.setItem("checked", remember);
 
         get(url.concat("?username=", username))
             .then(result => {
                 var x = result[0] && result[0].password === password
                 if (x) {
-                    if (document.getElementById("checkbox").checked) {
+                    if (remember) {
                         localStorage.setItem("user_id", result[0].id);
-                        localStorage.setItem("checked", true);
                     }
                     window.location.replace("http://localhost:3001/home.html");
                 }

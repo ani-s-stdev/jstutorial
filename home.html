@@ -5,18 +5,20 @@
     <title>Home</title>
 </head>
 <body>
-Home, sweet home ^o^
+<h1>Home, sweet home ^o^</h1>
+
+<h2>Products</h2>
+
+<table id="products" style="width: 50%" >
+    <tr>
+        <th align="left">Name</th>
+        <th align="left">Price</th>
+    </tr>
+    <tr>
+        <td><input type="text" id="name"></td>
+        <td><input type="text" id="price"><button id="add_product">Add</button></td>
+    </tr>
+</table>
+<script type="module" src="./home.js"></script>
 </body>
 </html>
-
-<script type="text/javascript">
-
-    document.addEventListener("readystatechange", event => {
-        if (event.target.readyState === "complete") {
-            if (localStorage.getItem("checked")===true && !localStorage.getItem("user_id")) {
-                window.location.replace("http://localhost:3001/");
-            }
-        }
-    });
-
-</script>
